@@ -1,0 +1,28 @@
+
+{
+  
+  "/eat-auditmessageconfig": {
+    "target": "http://localhost:8080/eat-auditmessageconfig",
+    "secure": false,
+    "pathRewrite": {
+      "^/eat-auditmessageconfig": ""
+    },
+    "changeOrigin": true
+  },
+  "/eat-repositoryconfiguration": {
+    "target": "http://localhost:8080/eat-repositoryconfiguration",
+    "secure": false,
+    "pathRewrite": {
+      "^/eat-repositoryconfiguration": ""
+    },
+    "changeOrigin": true
+  },
+  "/eat-repositoryconnection": {
+    "target": "http://localhost:8080/eat-repositoryconnection",
+    "secure": false,
+    "pathRewrite": {
+      "^/eat-repositoryconnection": ""
+    },
+    "changeOrigin": true
+  }
+}
