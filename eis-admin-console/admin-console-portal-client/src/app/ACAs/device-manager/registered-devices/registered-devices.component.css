@@ -1,0 +1,15 @@
+.add-color{
+    background-color: #3f51b5;
+    color:#fff;
+}
+.remove-color{
+    background-color: #fff;
+    color:black;
+}
+.btn-style{
+    background-color:#3f51b5;
+    color:#fff;
+}
+a {
+  color: rgba(39, 21, 21, 0.966);
+}

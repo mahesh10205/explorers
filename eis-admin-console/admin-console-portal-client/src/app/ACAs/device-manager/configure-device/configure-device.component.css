@@ -1,0 +1,16 @@
+.confiure-device-wrapper {
+  background-color: rgb(238, 238, 238);
+}
+
+.error-msg {
+  color: #a94442;
+}
+
+.fix-error-icon {
+  top: 27px;
+}
+
+
+a {
+  color: rgba(39, 21, 21, 0.966);
+}

@@ -1,0 +1,51 @@
+<table class="table table-bordered">
+  <thead>
+    <tr style="background-color:#D3D3D3">
+
+      <th *ngFor="let header of headers" scope="col">{{header | translate}}</th>
+
+    </tr>
+  </thead>
+  <tbody *ngFor="let device of devices let i = index" [attr.data-index]="i+1" style="background-color:rgba(0, 255, 255, 0.192)">
+    <tr (click)="selectDevice(i);rowSelected(i)" [ngClass]="isDeviceSelected(device)?'add-color':'remove-color'" isFLag="false">
+      <td scope="row">{{device.systemID}}</td>
+      <td>{{device.productName}}</td>
+      <td>{{device.manufacturer}}</td>
+      <td>{{device.belongsTo.siteID}}</td>
+      <td>{{device.belongsTo.siteName}}</td>
+      <td>{{device.belongsTo.country}}</td>
+      <td>{{device.belongsTo.region}}
+        <td>{{getStatus(device)}}</td>
+    </tr>
+
+    <tr *ngIf="isDeviceSelected(device)">
+      <td colspan="8">
+
+        <div>
+          <span>{{'DeviceManager.device_id' | translate}}: {{device.imagingDeviceID}}</span>
+          <span id=connectors *ngFor="let connector of device.connectors">
+            <div *ngFor="let capability of connector.capabilities">
+              <span>
+                <a [routerLink]="" (click)="showCapabilities(capability)">capability: {{capability.capability}}</a>
+              </span>
+              <br/>
+              <span *ngIf="capability.isShow">
+                {{'DeviceManager.ip'| translate}} : {{capability.configuration.ip}}
+                <br/> {{'DeviceManager.port'| translate}} : {{capability.configuration.port}}
+                <br/> {{'DeviceManager.aetitle'| translate}}: {{capability.configuration.aetitle}}
+                <br/>
+              </span>
+            </div>
+
+            <div class="registered-devices-btn">
+              <button id="updateDeviceDetails" mat-raised-button class="btn-style" (click)="openDialog(i)">update</button>
+              <button mat-raised-button class="btn-style" (click)="deleteDevice(device.imagingDeviceID)">delete</button>
+            </div>
+          </span>
+
+        </div>
+      </td>
+
+    </tr>
+  </tbody>
+</table>

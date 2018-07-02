@@ -1,0 +1,48 @@
+<!-- <code>{{pretify(getNotifications())}}</code> -->
+<br>
+<button class="calendar-icon" mat-fab (click)="showDates=!showDates">
+  <mat-icon>calendar_today</mat-icon>
+</button>
+<div class="date-container" *ngIf="showDates">
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="{{'kibana.from.date'| translate}}" [formControl]="fromdate">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <span></span>
+  <span>
+    <form class="demo-form">
+      <w-mat-timepicker color="primary" [(userTime)]="fromTime"></w-mat-timepicker>
+    </form>
+  </span>
+  <span></span>
+  <mat-form-field >
+    <input matInput placeholder="{{'kibana.timezone'| translate}}" class="timezone" value="{{currentTimeZone}}" disabled>
+  </mat-form-field>
+</div> 
+<div class="date-container" *ngIf="showDates">
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker2" placeholder="{{'kibana.to.date'| translate}}" [formControl]="todate">
+    <mat-datepicker-toggle matSuffix [for]="picker2">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <span></span>
+  <span>
+    <form class="demo-form">
+      <w-mat-timepicker color="primary" [(userTime)]="toTime"></w-mat-timepicker>
+    </form>
+  </span>
+</div>
+<div class="date-container" *ngIf="showDates">
+  <mat-checkbox class="checkbox" [(ngModel)]='isZip'>{{'kibana.zip'| translate}}</mat-checkbox>
+  <button class="export" mat-raised-button (click)="submit()" matTooltip="{{(isZip?'kibana.downloading.zip':'kibana.downloading.json') | translate}}" [matTooltipPosition]="'right'">{{'kibana.export.logs'| translate}}</button>
+</div>
+<br>
+<br>
+<div>
+  <iframe class="iframe-continer" frameborder="0" [src]="dashboardUrl |safe"></iframe>
+</div>

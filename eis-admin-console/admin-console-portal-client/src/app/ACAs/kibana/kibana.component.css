@@ -1,0 +1,30 @@
+.iframe-continer{
+  width: 100%;
+  height: 560px;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.date-container > * {
+  width: 15%;
+}
+
+.calendar-icon{
+ background-color :  #3f51b5
+}
+
+.export{
+  width: 25%;
+  margin-left: 150px;
+  height: 50px;
+}
+.checkbox{
+  padding-top: 22px;
+  margin-left: 25px;
+}
+.timezone{
+  color: rgb(0,0,0)
+}

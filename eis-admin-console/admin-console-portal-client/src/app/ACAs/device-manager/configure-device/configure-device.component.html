@@ -1,0 +1,107 @@
+<div class="confiure-device-wrapper p-3">
+  <div [formGroup]="configureDeviceForm" style="padding: 10px 10px">
+    <h3>{{'DeviceManager.system_info'|translate}}</h3>
+    <div formGroupName="device">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div>
+            <label style="padding-top:15px">{{'DeviceManager.SystemId'|translate}}*</label>
+            <input type="text" placeholder="Type systemID here" formControlName="systemID" class="form-control">
+            <app-field-error-display [displayError]="isDuplicateSystemID()" errorMsg="A unique SystemID is required!">
+            </app-field-error-display>
+          </div>
+          <div>
+            <label style="padding-top:15px">{{'DeviceManager.productName'|translate}}*</label>
+            <input type="text" placeholder="Type productName here" formControlName="productName" class="form-control">
+            <app-field-error-display [displayError]="isFieldValid('device.productName')" errorMsg="required field">
+            </app-field-error-display>
+          </div>
+          <div>
+            <label style="padding-top:15px">{{'DeviceManager.manufacturer'|translate}}*</label>
+            <input type="text" placeholder="Type manufacturer here" formControlName="manufacturer" class="form-control">
+            <app-field-error-display [displayError]="isFieldValid('device.manufacturer')" errorMsg="required field">
+            </app-field-error-display>
+          </div>
+        </div>
+        <div class="col-12 col-md-6" formGroupName="belongsTo">
+          <div>
+            <label style="padding-top:15px">{{'DeviceManager.siteID'|translate}}</label>
+            <input type="text" placeholder="Type siteID here" formControlName="siteID" class="form-control">
+          </div>
+          <div>
+            <label style="padding-top:15px">{{'DeviceManager.siteName'|translate}}*</label>
+            <input type="text" placeholder="Type siteName here" formControlName="siteName" class="form-control">
+            <app-field-error-display [displayError]="isFieldValid('device.belongsTo.siteName')" errorMsg="required field">
+            </app-field-error-display>
+          </div>
+          <div>
+            <label style="padding-top:15px">{{'DeviceManager.country'|translate}}*</label>
+            <input type="text" placeholder="Type country here" formControlName="country" class="form-control">
+            <app-field-error-display [displayError]="isFieldValid('device.belongsTo.country')" errorMsg="required field">
+            </app-field-error-display>
+          </div>
+          <div>
+            <label style="padding-top:15px">{{'DeviceManager.region'|translate}}*</label>
+            <input type="text" placeholder="Type region here" formControlName="region" class="form-control">
+            <app-field-error-display [displayError]="isFieldValid('device.belongsTo.region')" errorMsg="required field">
+            </app-field-error-display>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div [formGroup]="capabilitiesForm" style="padding: 10px 10px">
+    <h3>{{'DeviceManager.connector_details'|translate}}*</h3>
+    <mat-accordion *ngFor="let connector of connectors">
+      <div formArrayName="capabilities" *ngFor="let capability of capabilitiesForm.get('capabilities').controls; let i = index;">
+        <div [formGroupName]="i" style="padding-bottom: 10px">
+          <mat-expansion-panel (opened)="setCapabilityExpanded(i)">
+            <mat-expansion-panel-header style="padding-left: 10px; padding-right: 10px">
+              <mat-panel-title>
+                {{ capabilitiesForm.controls.capabilities.controls[i].controls.capability.value }}
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div formGroupName="configuration">
+              <div class="row pb-1">
+                <div class="col-12">
+                  <label for="ip">{{'DeviceManager.ip' | translate}}</label>
+                  <input formControlName="ip" placeholder="IP" id="ip" class="form-control">
+                  <app-field-error-display [displayError]="isConfigurationFieldValid('IP', i)" errorMsg="Please enter IP in correct format">
+                  </app-field-error-display>
+                </div>
+              </div>
+              <div class="row pb-1">
+                <div class="col-12">
+                  <label for="port">{{'DeviceManager.port' | translate}}</label>
+                  <input formControlName="port" placeholder="Port" id="port" class="form-control">
+                  <app-field-error-display [displayError]="isConfigurationFieldValid('PORT', i)" errorMsg="Please enter Port in correct format">
+                  </app-field-error-display>
+                </div>
+              </div>
+              <div class="row pb-1">
+                <div class="col-12">
+                  <label for="aetitle">{{'DeviceManager.aetitle' | translate}}</label>
+                  <input formControlName="aetitle" placeholder="AE Title" id="aetitle" class="form-control">
+                  <app-field-error-display [displayError]="isConfigurationFieldValid('AETITLE', i)" errorMsg="Please enter an AE Title">
+                  </app-field-error-display>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </mat-accordion>
+  </div>
+
+  <div style="display: flex; justify-content: space-between;">
+    <div></div>
+    <div>
+      <button [disabled]="!configureDeviceForm.valid || !isCapabilitiesValid" (click)="saveDevice()" class="btn btn-default">{{submitActionlabel}}</button>
+      <button style="padding-right: 10px" class="btn btn-default" (click)="dialogRef.close()">Cancel</button>
+    </div>
+  </div>
+</div>

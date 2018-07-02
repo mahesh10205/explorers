@@ -1,0 +1,57 @@
+buildscript {
+	repositories {
+		mavenCentral()
+			maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "com.moowork.gradle:gradle-node-plugin:1.1.1"
+	}
+}
+
+apply plugin: "com.moowork.node"
+apply plugin: 'eclipse'
+version = '0.0.1-SNAPSHOT'
+
+node {
+	version = '6.9.2'
+	download = false
+	//workDir = file("${rootDir}/admin-console-portal-client/node")
+    nodeModulesDir = file("${rootDir}/admin-console-portal-client")
+}
+
+task clean(type: Delete) {
+    group 'build client'
+    delete "${rootDir}/admin-console-portal-client/dist"
+}
+
+task cleanNpm(type: Delete, dependsOn: 'clean') {
+    group 'build client'
+    //dependsOn 'clean'
+    delete "${rootDir}/admin-console-portal-client/node_modules"
+}
+
+task buildUIDev(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'build'
+	description = 'Compiles client side typescript source files and generates javascript files'
+	args = ['run', 'devBuild']
+	doLast {
+		println 'Compilation of client side typescript source files and generation of javascript files is done'
+	}
+}
+
+task testUI(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'test'
+	description = 'Test client side typescript source files'
+	args = ['run', 'test']
+}
+
+task buildUI(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'build'
+	description = 'Compiles client side typescript source files and generates javascript files for production'
+	args = ['run', 'build']
+	doLast {
+		println 'Compilation of client side typescript source files and generation of javascript files is done'
+	}
+}

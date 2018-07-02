@@ -1,0 +1,81 @@
+<div class="dashboard-shell-container" [class.dashboard-shell-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="dashboard-shell-toolbar">
+
+      <mat-toolbar-row>
+          <img src="/assets/images/ge-logo.png" style="height: 50px;">
+          <span class="dashboard-shell-app-name">{{'Header.AdminConsole' | translate}}</span>
+          <span class="spacer"></span>
+          <span> 
+          <span>
+            <button mat-icon-button [matMenuTriggerFor]="notifications">
+              <mat-icon>notifications</mat-icon>
+              <span class="badge badge-light badge-notify">{{getNotificationCount()}}</span>
+            </button>
+          </span>
+          <span>
+          <!-- <span *ngIf="loggedInUser"> -->
+              <span class="user">{{ 'Header.WelcomeUser' | translate:{user: loggedInUser} }} </span>
+              <a (click)="logout()" class="logout">{{'Header.Logout'| translate}}</a>
+          </span>
+        </span>
+
+      </mat-toolbar-row>
+
+  </mat-toolbar>
+</div>
+
+<mat-menu #notifications="matMenu" [overlapTrigger]="false" class="menu-overflow-hidden">
+    <ng-container *ngFor="let notification of notificationData">
+        <ng-container *ngIf="notification?.severity=='Critical'">
+          <!-- <div class="alert alert-danger" role="alert"> -->
+          <div matTooltip="Critical" class="alarmPriority alarmPriorityHIGH">
+            <span>
+              <mat-icon>sms</mat-icon>
+              <!-- <a href="{{notification?.generatorURL}}" target="_blank">{{notification?.description}} </a> -->
+              <span>{{notification?.description}} </span>
+            </span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="notification?.severity=='High'">
+          <!-- <div class="alert alert-warning" role="alert"> -->
+          <div matTooltip="High" class="alarmPriority alarmPriorityMEDIUM">
+            <span>
+              <mat-icon>warning</mat-icon>
+              <!-- <a href="{{notification?.generatorURL}}" target="_blank"> {{notification?.description}}</a> -->
+              <span>{{notification?.description}} </span>
+            </span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="notification?.severity=='Medium'">
+          <!-- <div class="alert alert-warning" role="alert"> -->
+          <div matTooltip="Medium" class="alarmPriority alarmPriorityMEDIUM">
+            <span>
+              <mat-icon>warning</mat-icon>
+              <!-- <a href="{{notification?.generatorURL}}" target="_blank"> {{notification?.description}}</a> -->
+              <span>{{notification?.description}} </span>
+            </span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="notification?.severity=='Info'">
+          <!-- <div class="alert alert-info" role="alert"> -->
+          <div matTooltip="information" class="alarmPriority alarmPriorityINFO">
+            <span>
+              <mat-icon>information</mat-icon>
+              <!-- <a href="{{notification?.generatorURL}}" target="_blank">{{notification?.description}} </a> -->
+              <span>{{notification?.description}} </span>
+            </span>
+          </div>
+        </ng-container>
+      </ng-container>
+  
+</mat-menu>
+<mat-tab-group style="padding-top: 63px;">
+  <mat-tab *ngFor="let aca of acas">
+    <ng-template mat-tab-label>
+      <span>{{aca.getLabel()| translate}}</span>
+      &nbsp;
+      <span class='tab-badge'>{{getNotificationCount(aca)}}</span>
+    </ng-template>
+    <app-aca-component-loader [aca]="aca"></app-aca-component-loader>
+  </mat-tab>
+</mat-tab-group>

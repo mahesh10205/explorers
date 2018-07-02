@@ -1,0 +1,108 @@
+<div class=''>
+  <mat-card class="example-card">
+
+    <mat-card-content>
+
+      <div>
+        <span> <label>Enterprise Repository1 </label> </span>
+        <mat-radio-group [(ngModel)]="enterpriseRepoInfo.repository_1_status" >
+          <mat-radio-button [value]="true" class="audit-msg-settings-radio-button">On</mat-radio-button>
+          <mat-radio-button [value]="false" class="audit-msg-settings-radio-button">Off</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input [(ngModel)]="enterpriseRepoInfo.repository_1_host" matInput required placeholder="Host Name /IP" [formControl]="hostName1"
+            name="repository_1_host" required>
+          <mat-error *ngIf="hostName1.invalid">Invalid Host name</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input type="text" matInput [(ngModel)]="enterpriseRepoInfo.repository_1_port" placeholder="Port Number" [formControl]="portNoControl"
+            name="repository_1_port" required>
+          <mat-error *ngIf="portNoControl.invalid">{{getPortNoErrorMessage1()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+       
+        <mat-form-field>
+          <mat-select [(value)]="enterpriseRepoInfo.repository_1_protocol" placeholder="Protocol" name="repository_1_protocol">
+
+            <mat-option [value]="protocolInfo.protocolNum" *ngFor="let protocolInfo of protocolInfoList">{{protocolInfo.protocolText}}</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div>
+        <button mat-button (click)="onEnterpriseRepo1TestMsg()">Send Test Message</button>
+      </div>
+
+    </mat-card-content>
+
+
+
+  </mat-card>
+
+  <mat-card class="example-card">
+
+    <mat-card-content>
+
+      <div>
+        <span>
+          <label>Enterprise Repository2 </label>
+        </span>
+        <mat-radio-group [(ngModel)]="enterpriseRepoInfo.repository_2_status" name="repository_2_status">
+          <mat-radio-button [value]="true" class="audit-msg-settings-radio-button">On</mat-radio-button>
+          <mat-radio-button [value]="false" class="audit-msg-settings-radio-button">Off</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input [(ngModel)]="enterpriseRepoInfo.repository_2_host" matInput required placeholder="Host Name /IP" [formControl]="hostName2"
+            name="hostName2">
+          <mat-error *ngIf="hostName2.invalid">Invalid Host name</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input type="text" [(ngModel)]="enterpriseRepoInfo.repository_2_port" matInput required placeholder="Port Number" [formControl]="portNoControl2"
+            name="portNoControl2">
+          <mat-error *ngIf="portNoControl2.invalid">{{getPortNoErrorMessage2()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+       
+
+        <mat-form-field>
+          <mat-select [(value)]="enterpriseRepoInfo.repository_2_protocol" placeholder="Protocol" name="repository_2_protocol">
+
+            <mat-option [value]="protocolInfo.protocolNum" *ngFor="let protocolInfo of protocolInfoList">{{protocolInfo.protocolText}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button (click)="onEnterpriseRepo2TestMsg()">Send Test Message</button>
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+  <div style="float: right;">
+    <mat-chip-list>
+      <mat-chip (click) = "onSave()">Save</mat-chip>
+      <mat-chip>Cancel</mat-chip>
+    </mat-chip-list>
+  </div>
+
+</div>

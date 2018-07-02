@@ -1,0 +1,139 @@
+{
+  "/redirectUrl": {
+    "target": "http://localhost:8090/redirectUrl",
+    "secure": false,
+    "pathRewrite": {
+      "^/redirectUrl": ""
+    },
+    "changeOrigin": true
+  },
+  "/logoutUrl": {
+    "target": "http://localhost:8090/logoutUrl",
+    "secure": false,
+    "pathRewrite": {
+      "^/logoutUrl": ""
+    },
+    "changeOrigin": true
+  },
+  "/dashboardShell": {
+    "target": "http://localhost:8090/dashboardShell",
+    "secure": false,
+    "pathRewrite": {
+      "^/dashboardShell": ""
+    },
+    "changeOrigin": true
+  },
+  "/login": {
+    "target": "http://localhost:8090/login",
+    "secure": false,
+    "pathRewrite": {
+      "^/login": ""
+    },
+    "changeOrigin": true
+  },
+
+  "/userInfo": {
+    "target": "http://localhost:8090/userInfo",
+    "secure": false,
+    "pathRewrite": {
+      "^/userInfo": ""
+    },
+    "changeOrigin": true
+  },
+  "/eat-auditmessageconfig": {
+    "target": "http://localhost:8090/eat-auditmessageconfig",
+    "secure": false,
+    "pathRewrite": {
+      "^/eat-auditmessageconfig": ""
+    },
+    "changeOrigin": true
+  },
+  "/eat-repositoryconfiguration": {
+    "target": "http://localhost:8090/eat-repositoryconfiguration",
+    "secure": false,
+    "pathRewrite": {
+      "^/eat-repositoryconfiguration": ""
+    },
+    "changeOrigin": true
+  },
+  "/eat-repositoryconnection": {
+    "target": "http://localhost:8090/eat-repositoryconnection",
+    "secure": false,
+    "pathRewrite": {
+      "^/eat-repositoryconnection": ""
+    },
+    "changeOrigin": true
+  },
+  "/search": {
+    "target": "http://localhost:8090/search",
+    "secure": false,
+    "pathRewrite": {
+      "^/search": ""
+    },
+    "changeOrigin": true
+  },
+  "/timezone": {
+    "target": "http://localhost:8090/timezone",
+    "secure": false,
+    "pathRewrite": {
+      "^/timezone": ""
+    },
+    "changeOrigin": true
+  },
+  "/log": {
+    "target": "http://localhost:8090/log",
+    "secure": false,
+    "pathRewrite": {
+      "^/log": ""
+    },
+    "changeOrigin": true
+  },
+  "/applications": {
+    "target": "http://localhost:8090/applications",
+    "secure": false,
+    "pathRewrite": {
+      "^/applications": ""
+    },
+    "changeOrigin": true
+  },
+  "/imagingdevice": {
+    "target": "http://localhost:8090/imagingdevice",
+    "secure": false,
+    "pathRewrite": {
+      "^/imagingdevice": ""
+    },
+    "changeOrigin": true
+  },
+  "/dashboardShell/adminConsole": {
+    "target": "http://localhost:8090/dashboardShell/adminConsole",
+    "secure": false,
+    "pathRewrite": {
+      "^/dashboardShell/adminConsole": ""
+    },
+    "changeOrigin": true
+  },
+  "/dashboard": {
+    "target": "http://localhost:8090/dashboard",
+    "secure": false,
+    "pathRewrite": {
+      "^/dashboard": ""
+    },
+    "changeOrigin": true
+  },
+  "/alerts": {
+    "target": "http://localhost:3000/alerts",
+    "secure": false,
+    "pathRewrite": {
+      "^/alerts": ""
+    },
+    "changeOrigin": true
+  },
+  "/ping": {
+    "target": "http://localhost:8090/ping",
+    "secure": false,
+    "pathRewrite": {
+      "^/ping": ""
+    },
+    "changeOrigin": true
+  }
+}
