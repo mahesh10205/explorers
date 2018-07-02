@@ -1,0 +1,80 @@
+ribbon: 
+  eureka :
+     enabled : false
+
+server:
+  port : 8090
+  
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      accessTokenUri: /oauth2/token
+      grant-type: implicit
+      token-name: oauth_token 
+      authorized-grant-types: token
+      userAuthorizationUri: /oauth2/authorize
+      clientId: 78hKjkGfNRmwlF4zth_XTO_4ptAa
+#      clientSecret: z12uKf3Qrvci0ToVofEKOYi3HDca
+      scope: openid
+      clientAuthenticationScheme: header
+      useCurrentUri: false
+      response_type: id_token
+      grant_type: implicit      
+    resource:
+      userInfoUri: /oauth2/userinfo?schema=openid
+
+zuul:
+  routes:
+    k8s:
+      path: /k8s/**
+      url: http://localhost:30000 
+    eat-auditmessageconfig:
+      path: /eat-auditmessageconfig/**
+      url: http://3.28.94.16:32078/eis/v1/auditlogconfig/auditmessageconfig/      
+    eat-repositoryconfiguration:
+      path: /eat-repositoryconfiguration/**
+      url: http://3.28.94.16:32078/eis/v1/auditlogconfig/repositoryconfiguration/
+    eat-repositoryconnection:
+      path: /eat-repositoryconnection/**
+      url: http://3.28.94.16:32078/eis/v1/auditlogconfig/repositoryconnection/
+    imagingdevice:
+      path: /imagingdevice/**
+      url: http://3.28.94.16:30028/eis/v1/imagingdevice/
+      
+###################
+# App Urls start
+###################
+aca:
+    apps:
+        k8s:
+            appId: k8s
+            urls.dashboard: '/k8s-dashboard/'
+        devicemanager:
+            appId: device.manager
+            urls.imagingdevice: '/idr'
+            urls.ping: '/ping'
+        auditlogging:
+            appId: audit.logging
+            urls.auditmessageconfig: '/eat-auditmessageconfig'
+            urls.repositoryconfiginfo: '/eat-repositoryconfiguration'
+            urls.repositoryconnection: '/eat-repositoryconnection'
+        kibana:
+            appId: kibana
+            urls.dashboard: '/kibana-dashboard/'
+            urls.logexport: '/kibana-search'
+            urls.timezone: '/kibana-timezone'
+        grafana:
+            appId: grafana
+            urls.dashboard: '/grafana-dashboard/'
+        prometheus:
+            appId: prometheus
+            urls.dashboard: '/prometheus-dashboard/'
+        openstack:
+            appId: openstack
+            urls.dashboard: '/openstack-dashboard'
+       
+###################
+# App Urls END
+################### 
