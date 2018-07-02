@@ -1,0 +1,73 @@
+buildscript {
+    repositories {
+        mavenCentral()
+            maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+dependencies {
+    classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
+    classpath "com.eriwen:gradle-js-plugin:2.14.1"
+  }    
+}
+
+// plugins {
+//   id "com.moowork.node" version "1.2.0"
+//   id "com.eriwen.gradle.js" version "2.14.1"
+// }
+
+apply plugin: "com.moowork.node"
+apply plugin: "js"
+
+version = '0.0.1-SNAPSHOT'
+
+node {
+	version = '6.9.2'
+	download = false
+	//workDir = file("${rootDir}/admin-console-portal-client/node")
+    nodeModulesDir = file("${rootDir}/alert-service")
+}
+
+// node {
+//     version = '10.2.0'
+//     download = false
+//     nodeModulesDir = file("${rootDir}")
+// }
+
+// Declare your sources
+javascript.source {
+    server {
+        js {
+            srcDir "${rootDir}/alert-service"
+            include "*.js"
+        }
+    }
+}
+
+minifyJs {
+    source = javascript.source.server.js.files
+    dest = file("${buildDir}/resources/main/site/assets/js/server.min.js")
+
+    closure {
+        warningLevel = 'QUIET'  
+        compilerOptions.languageIn = 'ECMASCRIPT6'
+        compilationLevel = 'WHITESPACE_ONLY'
+    }
+}
+
+task clean(type: Delete) {
+    group 'build client'
+    delete "${rootDir}/alert-service/build"
+}
+
+task cleanNpm(type: Delete, dependsOn: 'clean') {
+    group 'build client'
+    //dependsOn 'clean'
+    delete "${rootDir}/alert-service/node_modules"
+}
+
+task startAlertService(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'build'
+	description = 'start node server'
+	args = ['start']
+}

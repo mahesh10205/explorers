@@ -1,0 +1,20 @@
+{
+    "name": "kong-service",
+    "version": "1.0.0",
+    "description": "Simple Node.js API server which executes python script",
+    "license": "@GE",
+    "scripts": {
+        "start": "SET ALERT_HOST=3.28.94.16&& SET ALERT_PORT=32126&& SET SERVER_HOST=3.28.94.16&& SET SERVER_PORT=32113&& SET CLIENT_HOST=3.28.94.16&& SET CLIENT_PORT=32736&& SET IDR_HOST=3.28.94.16&& SET IDR_PORT=30028&& SET prometheus_HOST=3.28.94.16&& SET prometheus_PORT=31334&& SET ALC_HOST=3.28.94.16&& SET ALC_PORT=32215&& node kongmock.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "cors": "^2.8.4",
+        "express": "^4.16.3",
+        "http-proxy-middleware": "^0.18.0",
+        "redis": "^2.8.0",
+        "uuid": "^3.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.17.3"
+    }
+}

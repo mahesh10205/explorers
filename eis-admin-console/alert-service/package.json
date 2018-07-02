@@ -1,0 +1,24 @@
+{
+    "name": "alert-service",
+    "version": "1.0.0",
+    "description": "Simple Node.js API server which executes python script",
+    "license": "@GE",
+    "scripts": {
+        "start": "SET P_HOST=3.28.94.16&& SET P_PORT=31334&& SET P_AHOST=3.28.94.16&& SET P_APORT=31413&& node server.js",
+        "test": "set P_HOST=test&&set P_PORT=80&&set P_AHOST=test&&set P_APORT=80&& mocha"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "cors": "^2.8.4",
+        "express": "^4.16.3",
+        "redis": "^2.8.0",
+        "uuid": "^3.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.17.3",
+        "chai": "^4.1.2",
+        "chai-http": "^4.0.0",
+        "mocha": "^5.2.0",
+        "nock": "^9.3.3"
+    }
+}

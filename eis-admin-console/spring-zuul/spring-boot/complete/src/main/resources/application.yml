@@ -1,0 +1,72 @@
+ribbon: 
+  eureka :
+     enabled : false
+     
+security:
+  basic:
+     enabled: false
+  
+
+server:
+  port : 8090
+  ssl:
+    key-alias: selfsigned_localhost_sslserver
+    key-password: changeit
+    key-store: classpath:ssl-server.jks
+    key-store-provider: SUN
+    key-store-type: JKS 
+
+zuul:
+  routes:
+    applications:
+      path: /applications/**
+      url: http://3.28.94.16:32118/applications
+    eat-repositoryconfiguration:
+      path: /eat-repositoryconfiguration/**
+      url: http://3.28.94.16:32215/eat-repositoryconfiguration
+    eat-repositoryconnection:
+      path: /eat-repositoryconnection/**
+      url: http://3.28.94.16:32215/eat-repositoryconnection
+    eat-auditmessageconfig:
+      path: /eat-auditmessageconfig/**
+      url: http://3.28.94.16:32215/eat-auditmessageconfig
+    idr:
+      path: /idr/**
+      url: http://3.28.94.16:32211/imagingdevice
+    alerts:
+      path: /alerts/**
+      url: http://3.28.94.16:32126/alerts
+    kibana-timezone:
+      path: /kibana-timezone/**
+      url: http://3.28.94.16:32118/timezone
+    kibana-search:
+      path: /kibana-search/**
+      url: http://3.28.94.16:32118/search
+    ping:
+      path: /ping/**
+      url: http://3.28.94.16:32118/ping
+    log:
+      path: /log/**
+      url: http://3.28.94.16:32118/log
+    logoutUrl:
+      path: /logoutUrl/**
+      url: http://3.28.94.16:32118/logoutUrl
+    prometheus-dashboard:
+      path: /prometheus-dashboard/**
+      url: http://3.28.94.16:31334/prometheus-dashboard/
+    grafana-dashboard:
+      path: /grafana-dashboard/**
+      url: http://3.28.94.21:3000/
+    kibana-dashboard:
+      path: /kibana-dashboard/**
+      url: http://3.28.94.16:32456/
+    openstack-dashboard:
+      path: /openstack-dashboard/**
+      url: http://3.28.93.151/auth/login
+    k8s-dashboard:
+      path: /k8s-dashboard/**
+      url: https://3.28.94.16:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+    /:
+      path: ///**
+      url: http://3.28.94.16:32736
+
