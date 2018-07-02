@@ -1,0 +1,39 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+task buildPortalClient(dependsOn : ':admin-console-portal-client:buildUI'){
+ 	group = 'build'
+ 	description = 'Executes gradle tasks'
+	doLast {
+ 	        println 'admin-console-portal-client build is done..!'
+ 	}
+}
+
+task buildPortalService(dependsOn : ':admin-console-portal-service:build'){
+	group = 'build'
+	doLast {
+		println 'admin-console-portal-service jar build is done..!'
+	}
+}
+
+task minifyAlertService(dependsOn: ':alert-service:minifyJs') {
+    group = 'build'
+    doLast {
+        println 'alert-service  minifyJs is done..!'
+    }
+}
+
+task build(dependsOn : [':admin-console-portal-client:buildUI', ':admin-console-portal-service:build', ':alert-service:minifyJs']) {
+ group = 'build'
+ doLast {
+     println 'building all project is done..!'
+ }    
+}
+
+task clean(dependsOn : [':admin-console-portal-client:cleanNpm', ':admin-console-portal-service:clean', ':alert-service:cleanNpm']) {
+ group = 'build client'
+ doLast {
+     println 'cleaning all project is done..!'
+ }    
+}

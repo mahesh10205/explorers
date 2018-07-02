@@ -1,0 +1,6 @@
+rootProject.name = 'eis-admin-console'
+
+include 'admin-console-portal-client',
+        'admin-console-portal-service',
+        'alert-service'
+

@@ -1,0 +1,13 @@
+@Library(['eis_pipeline', 'dsl-lib']) _
+ adminConsole {
+   flowdockApiToken     = '0931785b567893341786cb5b7941eda3'
+   mailingList          = 'SatyaVenkat.Kesavarapu@ge.com'
+   project              = 'eis_admin_console'
+   enableDebug          = 'false'
+   filePattern          = 'build/distributions/*.rpm'
+   targetRepo           = 'maven-snapshot-coreload'
+   sonarProjectKey      = 'com.ge.hc.BLR.Test.EisAdminConsole'
+   sonarProjectName     = 'EIS.TEST.EisAdminConsole'
+   enableDeployment     = 'true'
+   customBuildCommand   = ' '
+}
